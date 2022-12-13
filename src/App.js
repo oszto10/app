@@ -5,30 +5,70 @@ import LoadingMask from "./components/LoadingMask";
 
 function App() {
   const [beers, setBeers] = useState([]);
-  const [perPage, setPerPage] = useState(10);
+  const [name, setName] = useState("");
+  const [tagline, setTagline] = useState("");
+  const [abv, setAbv] = useState(0);
+
+  const fetchBeers = () => {
+    fetch("/beers")
+      .then((res) => res.json())
+      .then((data) => setBeers(data));
+  };
+
+  const addBeer = () => {
+    fetch("/beers/add", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        tagline: tagline,
+        abv: abv,
+      }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) =>
+      res.json().then((data) => {
+        console.log(data);
+        fetchBeers();
+      })
+    );
+  };
 
   useEffect(() => {
-    fetch(`https://api.punkapi.com/v2/beers?per_page=${perPage}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTimeout(() => {
-          setBeers(data);
-        }, 1000);
-      });
-  }, [perPage]);
-
-  console.log(beers);
+    fetchBeers();
+  }, []);
 
   return (
     <div className="App">
-      <input
-        type="number"
-        value={perPage}
-        onChange={(event) => {
-          setPerPage(event.target.value);
-        }}
-      />
-      {beers.length > 0 ? <Beers beers={beers} /> : <LoadingMask />}
+      {beers.length > 0 ? (
+        <>
+          <input
+            type="text"
+            placeholder="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="tagline"
+            value={tagline}
+            onChange={(event) => setTagline(event.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="abv"
+            onChange={(event) => setAbv(event.target.value)}
+          />
+          <button
+            onClick={() => {
+              addBeer();
+            }}
+          >
+            Send
+          </button>
+          <Beers beers={beers} />{" "}
+        </>
+      ) : (
+        <LoadingMask />
+      )}
     </div>
   );
 }

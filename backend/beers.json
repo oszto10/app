@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Soproni",
+        "tagline": "A sör",
+        "abv": 4.5
+    },
+    {
+        "name": "Ászok",
+        "tagline": "A csosás sör",
+        "abv": 4.5
+    },
+    {
+        "name": "Borsodi",
+        "tagline": "A jó sör",
+        "abv": 4.5
+    },
+    {
+        "name": "Heineken",
+        "tagline": "A kiváló sör",
+        "abv": 4.5
+    },
+    {
+        "name": "Coronita",
+        "tagline": "A fergeteges sör",
+        "abv": 4.5
+    },
+    {
+        "name": "new",
+        "tagline": "new",
+        "abv": "5"
+    },
+    {
+        "name": "Kalizsai",
+        "tagline": "A legjobb sör",
+        "abv": "54"
+    }
+]
