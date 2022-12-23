@@ -1,9 +1,9 @@
 import React from 'react'
 import Beer from './Beer'
 
-function Beers({beers}) {
+function Beers({beers, fetchBeers}) {
   return (
-    <div>{beers.map((beer, i)=><Beer key={i} beerData={beer}/>)}</div>
+    <div>{beers.map((beer, i)=><Beer key={i} beerData={beer} fetchBeers={fetchBeers}/>)}</div>
   )
 }
 

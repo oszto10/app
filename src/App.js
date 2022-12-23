@@ -64,7 +64,7 @@ function App() {
           >
             Send
           </button>
-          <Beers beers={beers} />{" "}
+          <Beers beers={beers} fetchBeers={fetchBeers} />{" "}
         </>
       ) : (
         <LoadingMask />

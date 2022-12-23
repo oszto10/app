@@ -34,6 +34,7 @@ app.post("/beers/add", (req, res) => {
       console.log(err);
     } else {
       const beerData = JSON.parse(data);
+      newBeerData.id = beerData.length + 1;
       beerData.push(newBeerData);
 
       fs.writeFile(
@@ -44,6 +45,30 @@ app.post("/beers/add", (req, res) => {
             console.log(err);
           } else {
             return res.json(newBeerData);
+          }
+        }
+      );
+    }
+  });
+});
+
+app.delete("/del/:id", (req, res) => {
+  fs.readFile(`${__dirname}/beers.json`, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const beerData = JSON.parse(data);
+
+      const newBeerData = beerData.filter((beer) => beer.id !== +req.params.id);
+      console.log(newBeerData);
+      fs.writeFile(
+        `${__dirname}/beers.json`,
+        JSON.stringify(newBeerData, null, 4),
+        (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            return res.send('"ok"');
           }
         }
       );
