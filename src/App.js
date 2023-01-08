@@ -8,6 +8,7 @@ function App() {
   const [name, setName] = useState("");
   const [tagline, setTagline] = useState("");
   const [abv, setAbv] = useState(0);
+  const [input, setClearInput] = useState("");
 
   const fetchBeers = () => {
     fetch("/beers")
@@ -60,6 +61,9 @@ function App() {
           <button
             onClick={() => {
               addBeer();
+              if (input !== "") {
+                setClearInput();
+              }
             }}
           >
             Send

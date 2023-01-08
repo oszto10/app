@@ -22,5 +22,17 @@
         "name": "Heineken",
         "tagline": "A kiváló sör",
         "abv": 4.5
+    },
+    {
+        "name": "kkkkkk",
+        "tagline": "dddddd",
+        "abv": "66",
+        "id": 5
+    },
+    {
+        "name": "cdc",
+        "tagline": "dcw",
+        "abv": "4",
+        "id": 6
     }
 ]
